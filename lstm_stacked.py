@@ -179,7 +179,11 @@ except:
     plot_history(history, val=False)
     
 mse_loss,mae,mse,mape,acc = model.evaluate(X_lstm, y_lstm)
+print("Train MSE loss, MAE, MSE, MAPE, acc: ", mse_loss,mae,mse,mape,acc)
+
 mse_loss,mae,mse,mape,acc= model.evaluate(X_test_lstm, y_test_lstm)
+print("Test MSE loss, MAE, MSE, MAPE, acc: ", mse_loss,mae,mse,mape,acc)
+
 y_true_list,y_pred = predict_lstm(y_test, n_steps)
 plot_evaluation(y_true_list, y_pred, mae)
 

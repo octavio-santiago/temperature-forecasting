@@ -152,6 +152,7 @@ n_steps = 18
 n_features = 1
 X_lstm,y_lstm = split_sequence(y_train.values, n_steps)
 X_lstm = X_lstm.reshape((X_lstm.shape[0], X_lstm.shape[1], n_features))
+
 X_test_lstm,y_test_lstm = split_sequence(y_test.values, n_steps)
 X_test_lstm = X_test_lstm.reshape((X_test_lstm.shape[0], X_test_lstm.shape[1], n_features))
 
@@ -177,7 +178,11 @@ except:
     plot_history(history, val=False)
     
 mse_loss,mae,mse,mape,acc = model.evaluate(X_lstm, y_lstm)
+print("Train MSE loss, MAE, MSE, MAPE, acc: ", mse_loss,mae,mse,mape,acc)
+
 mse_loss,mae,mse,mape,acc= model.evaluate(X_test_lstm, y_test_lstm)
+print("Test MSE loss, MAE, MSE, MAPE, acc: ", mse_loss,mae,mse,mape,acc)
+
 y_true_list,y_pred = predict_lstm(y_test, n_steps)
 plot_evaluation(y_true_list, y_pred, mae)
 
